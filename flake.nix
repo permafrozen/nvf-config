@@ -5,12 +5,14 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nvf.url = "github:notashelf/nvf";
+    systems.url = "github:nix-systems/default";
   };
 
-  outputs = inputs@{ flake-parts, nvf, ... }:
+  outputs = inputs@{ flake-parts, nvf, systems, ... }:
     let modules = [ (import ./vim) ];
     in flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+      systems = import systems;
+      flake = { };
       perSystem = { pkgs, ... }: {
         packages.default = (nvf.lib.neovimConfiguration {
           inherit pkgs;

@@ -5,7 +5,7 @@
     transparent = true;
 
     base16-colors = {
-      base00 = "282a36";
+      base00 = "000000";
       base01 = "363447";
       base02 = "44475a";
       base03 = "6272a4";
