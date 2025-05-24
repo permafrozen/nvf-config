@@ -8,7 +8,7 @@
   };
 
   outputs = inputs@{ flake-parts, nvf, ... }:
-    let modules = [ (import ./src) ];
+    let modules = [ (import ./vim) ];
     in flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-linux" ];
       perSystem = { pkgs, ... }: {
