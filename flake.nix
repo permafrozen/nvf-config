@@ -15,7 +15,7 @@
       flake = {
         nixosModules.nvf = {
           imports = [ nvf.nixosModules.nvf ];
-          programs.nvf.settings = modules;
+          programs.nvf.settings = import ./vim;
         };
       };
       perSystem = { pkgs, ... }: {
