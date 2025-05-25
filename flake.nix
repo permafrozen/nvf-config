@@ -12,12 +12,18 @@
     let modules = [ (import ./vim) ];
     in flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import systems;
+
+      # Exposed Nixos Module which can be imported
+      # in another consumer flake
       flake = {
         nixosModules.nvf = {
           imports = [ nvf.nixosModules.nvf ];
           programs.nvf.settings = import ./vim;
         };
       };
+
+      # Exposed Standalone Package which can be added
+      #  to the environment of a configuration
       perSystem = { pkgs, ... }: {
         packages.default = (nvf.lib.neovimConfiguration {
           inherit pkgs;

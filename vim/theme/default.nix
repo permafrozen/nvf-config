@@ -1,26 +1,22 @@
 {
   vim.theme = {
     enable = true;
-    name = "base16";
-    transparent = true;
 
-    # base16-colors = {
-    #   base00 = "000000";
-    #   base01 = "363447";
-    #   base02 = "44475a";
-    #   base03 = "6272a4";
-    #   base04 = "9ea8c7";
-    #   base05 = "f8f8f2";
-    #   base06 = "f0f1f4";
-    #   base07 = "ffffff";
-    #   base08 = "ff5555";
-    #   base09 = "ffb86c";
-    #   base0A = "f1fa8c";
-    #   base0B = "50fa7b";
-    #   base0C = "8be9fd";
-    #   base0D = "80bfff";
-    #   base0E = "ff79c6";
-    #   base0F = "bd93f9";
-    # };
+    # If the base16-colors are predefined as defaults, the stylix module breaks
+    # and appends the colors, which leads to a critical error
+
+    # base16-colors = { };
   };
+
+  vim.luaConfigPost = ''
+    vim.api.nvim_set_hl(0, "Normal",      { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalNC",    { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+    vim.api.nvim_set_hl(0, "SignColumn",  { bg = "none" })
+    vim.api.nvim_set_hl(0, "StatusLine",  { bg = "none" })
+    vim.api.nvim_set_hl(0, "VertSplit",   { bg = "none" })
+    vim.api.nvim_set_hl(0, "LineNr",      { bg = "none" })
+    vim.api.nvim_set_hl(0, "NonText",     { bg = "none" })
+  '';
 }
