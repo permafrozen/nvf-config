@@ -18,5 +18,7 @@
     vim.api.nvim_set_hl(0, "VertSplit",   { bg = "none" })
     vim.api.nvim_set_hl(0, "LineNr",      { bg = "none" })
     vim.api.nvim_set_hl(0, "NonText",     { bg = "none" })
+    vim.api.nvim_set_hl(0, "TSPunctBracket",     { bg = "none" })
+
   '';
 }
