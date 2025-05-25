@@ -8,11 +8,13 @@
     systems.url = "github:nix-systems/default";
   };
 
-  outputs = inputs@{ flake-parts, nvf, systems, ... }:
+  outputs = inputs@{ self, flake-parts, nvf, systems, ... }:
     let modules = [ (import ./vim) ];
     in flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import systems;
-      flake = { };
+      flake = {
+        nixosModules.nvf = { imports = [ nvf.nixosModules.nvf ] ++ modules; };
+      };
       perSystem = { pkgs, ... }: {
         packages.default = (nvf.lib.neovimConfiguration {
           inherit pkgs;
