@@ -13,7 +13,10 @@
     in flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import systems;
       flake = {
-        nixosModules.nvf = { imports = [ nvf.nixosModules.nvf ] ++ modules; };
+        nixosModules.nvf = {
+          imports = [ nvf.nixosModules.nvf ];
+          programs.nvf.settings = modules;
+        };
       };
       perSystem = { pkgs, ... }: {
         packages.default = (nvf.lib.neovimConfiguration {
